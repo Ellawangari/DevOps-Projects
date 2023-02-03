@@ -1,1 +1,22 @@
+version: 0.2 
+phases: 
+  install:
+  #installs the runtime#
+    runtime-versions:
+      dotnet:6.0
+  pre_build:
+    commands:
+    #restores the nuget package related to our project#
+      - dotnet restore AWSCodePipeline/AwsCodePipeline.csproj
+  build:
+    commands:
+    #builds the project#
+      - dotnet build AWSCodePipeline/AWSCodePipeline.csproj
+  post_build:
+    commands:
+    #here we can choose to also run some tests in our case we are publishing the application to the app folder of the root directory#
+      - dotnet publish -c Release -o ./app/ AWSCodePipeline/AWSCodePipeline.csproj
 
+artifacts: 
+  files: 
+    - '**/*'

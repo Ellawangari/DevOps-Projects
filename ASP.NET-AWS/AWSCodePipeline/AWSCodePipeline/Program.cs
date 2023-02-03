@@ -22,4 +22,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//it simply prints out the message once the root endpoint of the API is invoked
+
+app.MapGet("/", () => " CI/CD Implementation of .NET Core application on AWS ");
+
 app.Run();
